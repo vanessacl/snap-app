@@ -1,0 +1,107 @@
+.choose-background {
+    .page-heading {
+        margin-bottom: 45px;
+    }
+
+    .background-slider {
+        display: flex;        
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        width: 100%; //set width to show partial images
+        margin: 0 auto;
+        padding: 0 30px;
+        scrollbar-width: none; //hide scrollbar - for Firefox
+        -ms-overflow-style: none; //hide scrollbar - for IE and Edge
+
+        &::-webkit-scrollbar {
+            display: none; //hide scrollbar - for chrome,and safari
+        }
+
+        .background-slide {
+            position: relative;
+            flex: 0 0 87%; //make sure each slide is 87% of the container width
+            display: flex;
+            justify-content: center;
+            scroll-snap-align: center;
+            position: relative;
+            padding: 0;
+            max-width: 329px;
+            margin: 0 30px;            
+
+            img {
+                width: 115%;
+                cursor: pointer;
+                border: 4px solid transparent;
+                transition: border-color 0.3s ease;
+                image-rendering: auto;
+
+                &.ico-selected {
+                    position: absolute;
+                    //left: 8px;
+                    left: -12px;
+                    top: 8px;
+                    width: 24px;
+                    height: 24px;
+                    display: none;
+                    transition: display 0.3s ease;
+                }
+
+                &.selected {
+                    border-color: $white;
+
+                    ~ .ico-selected {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    .pagination-controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 16px;
+
+        button {
+            margin: 0 25px;
+            padding: 4px 0 0;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+
+        span {
+            display: inline-block;
+            width: 34px;
+            //height: 23px;
+            border-radius: 20px;
+            background-color: $white;
+            font-weight: 300;
+            font-size: 12px;
+            line-height: normal;
+            text-align: center;
+            color: $black;
+            padding: 5px 8px 5px;
+        }
+    }
+
+    .btn-container {
+        margin: 44px auto 50px;
+
+        p {
+            font-family: 'Custom';
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 22px;
+            color: $white;
+            text-align: center;
+        }
+    }
+}

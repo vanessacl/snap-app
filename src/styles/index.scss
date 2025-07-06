@@ -1,0 +1,56 @@
+@import 'base/base.scss';
+@import 'components/components.scss';
+@import 'pages/pages.scss';
+
+.landscape-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("/assets/bg-orientation.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .center-content {
+        max-width: 422px;
+        justify-content: flex-start;
+
+        .header {
+            margin: 48px 0 42px;
+
+            .logo-container {
+                .logo {
+                    width: 119px;
+                    height: 37px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        img {
+            width: 64px;
+            height: 64px;
+            image-rendering: auto;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 34px;
+            text-align: center;
+            color: $white;
+            margin-bottom: 8px;
+        }
+
+        p {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 24px;
+            text-align: center;
+            color: $white;           
+        }
+    }
+}

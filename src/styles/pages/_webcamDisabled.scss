@@ -1,0 +1,35 @@
+.webcam-disabled {
+
+    h2 {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        text-align: center;
+        color: $white;
+        margin: 16px auto;
+    }
+
+    p {
+        font-size: 400;
+        font-size: 16px;
+        line-height: 22px;
+        text-align: center;
+        color: $white;
+        margin-bottom: 16px;
+    }
+
+    ol {
+        width: 100%;
+        max-width: 329px;
+        padding-left: 24px;
+        margin-bottom: 100px;
+        
+
+        li{
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 22px;
+            color: $white;
+        }
+    }
+}

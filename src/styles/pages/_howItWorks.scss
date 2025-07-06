@@ -1,0 +1,30 @@
+.how-it-works {
+    
+    ol {
+        list-style-type: none;
+        width: 100%;
+        max-width: 329px;
+        margin: 24px auto 50px;
+        padding: 0 25px;
+
+        li {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 28px;
+            text-align: center;
+            color: $white;
+            margin-bottom: 24px;
+
+            span {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 22px;
+                color: $white;
+            }
+        }
+    }
+
+    .btn-container {
+        margin-bottom: 33px;
+    }    
+}

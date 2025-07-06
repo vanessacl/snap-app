@@ -1,0 +1,31 @@
+.header {
+    position: relative;
+    width: 100%;
+    margin: 32px 0 24px;
+
+    .back-btn {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        background-color: transparent;
+        cursor:pointer;
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+
+        .logo {
+            width: 118px;
+            height: 40px;
+            image-rendering: auto;
+        }
+    }
+}

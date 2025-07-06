@@ -1,0 +1,382 @@
+.image-capture {
+
+    .selfie-screen {
+        &.show {
+            display: block;
+        }
+
+        &.hide {
+            display: none;
+        }
+
+        .page-heading {
+            &.show {
+                display: block;
+            }
+
+            &.hide {
+                display: none;
+            }
+        }
+
+        .page-subheading {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+            color: $white;
+            margin-top: 16px;
+        }
+
+        .container {
+            position: relative;
+            width: 393px;
+            height: 393px;
+            background-color: rgba(0, 0, 0, 0.50);
+            margin: 14px auto;
+
+            &.active {
+                .silhouette-overlay {
+                    display: inline-block;
+                    content: '';
+                    width: 207px;
+                    height: 215px;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    top: 60px;
+                    image-rendering: auto;
+                }
+
+                .countdown {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: 0 auto;
+                    top: 110px;
+
+                    h3 {
+                        font-weight: 400;
+                        font-size: 111px;
+                        line-height: 135px;
+                        text-align: center;
+                        color: $white;
+                        opacity: 0.8;
+                    }
+
+                    &.rear-flip {
+                        transform: scaleX(-1); /* Flip horizontally */
+                    }
+                }                
+
+                &.rear-flip {
+                    transform: scaleX(-1); /* Flip horizontally */
+
+                    .btns-container {
+                        transform: scaleX(-1); /* Flip horizontally */
+                    }
+                }
+            }
+
+            video, img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .btns-container {
+                width: 100%;
+                max-width: 539px;
+                display: flex;
+                justify-content: center;
+                margin: 0 auto 50px;
+                position: absolute;
+                bottom: -95px;
+
+                &.group {
+                    justify-content: space-between;
+                }
+
+                .hidden {
+                    display: none;
+                }
+
+                .btns-step1 {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 16px;
+                    width: 100%;
+                    max-width: 329px;
+
+                    .flip-container {
+                        width: 80px;
+                        height: 80px;
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        display: grid;
+                        place-items: center;
+                        background-color: transparent;
+
+                        &:before {
+                            content: "";
+                            position: absolute;
+                            height: 50%;
+                            width: 50%;
+                            background-color: $white;
+                            border-radius: 50%;
+                            z-index: -1;
+                            opacity: 0.30;
+                            animation: pulse 2s ease infinite;
+                        }
+
+                        .btn-flip {
+                            width: 48px;
+                            height: 48px;
+                            border-radius: 50%;
+                            background: transparent;
+                            background-image: url("/assets/flip-btn.png");
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            z-index: 6;
+                            cursor: pointer;
+                        }
+
+                        @keyframes pulse {
+                            100% {
+                                transform: scale(2.5);
+                                opacity: 0;
+                            }
+                        }
+                    }
+
+                    .btn-capture {
+                        position: relative;
+                        margin: 0 auto;
+                        width: 90px;
+                        height: 90px;
+                        border-radius: 50%;
+                        background: transparent;
+                        background-image: url("/assets/capture-btn.png");
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        z-index: 4;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .waiting-screen {
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .center-content {
+            .waiting-msg {
+                margin-top: 180px;
+
+                .ico-loading {
+                    display: block;
+                    width: 56px;
+                    height: 56px;
+                    margin: 0 auto 32px;
+                    animation: rotate 1.5s linear infinite;
+                }
+
+                h3 {
+                    font-weight: 400;
+                    font-size: 32px;
+                    line-height: 39px;
+                    text-align: center;
+                    color: $white;
+                    margin-bottom: 8px;
+                }
+
+                p {
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 21px;
+                    text-align: center;
+                    color: $white;
+                }
+
+                @keyframes rotate {
+                    0% {
+                        transform: rotate(360deg);
+                    }
+
+                    100% {
+                        transform: rotate(0deg);
+                    }
+                }
+            }
+        }
+    }
+
+    .error-screen {
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .center-content {
+            .error-msg {
+                margin-top: 180px;
+                width: 100%;
+                max-width: 329px;
+                height: 261px;
+                border-radius: 9px;
+                background-color: $white;
+                padding: 32px 24px;
+
+                h3 {
+                    font-weight: 400;
+                    font-size: 32px;
+                    line-height: 42px;
+                    text-align: center;
+                    color: $black;
+                    margin-bottom: 16px;
+                }
+
+                p {
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 21px;
+                    text-align: center;
+                    color: $black;
+                    margin-bottom: 16px;
+                }
+
+                .btn-retake2 {
+                    width: 100%;
+                    height: 60px;
+                    border-radius: 8px;
+                    background-color: $black;
+                    color: $white;
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 22px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .reveal-screen {
+        .show {
+            display: block;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .center-content {
+            .page-heading {
+                margin-bottom: 14px !important;
+            }
+
+            .btns-step2 {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                column-gap: 25px;
+                margin: 16px auto 60px;
+                width: 100%;
+                max-width: 329px;
+
+                .btn-retake {
+                    position: relative;
+                    margin: 0 auto;
+                    width: 64px;
+                    height: 64px;
+                    border-radius: 50%;
+                    background: transparent;
+                    background-image: url("/assets/retake-btn.png");
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    z-index: 4;
+                    cursor: pointer;
+                }
+
+                .btn-white {
+                    width: 240px;
+                    border-radius: 8px;
+                    font-family: 'Custom';
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 60px;
+                    text-align: center;
+                    color: $black;
+                    background-color: $white;
+                }
+            }
+        }
+
+        .container {
+            position: relative;
+            width: 393px;
+            height: 393px;
+            background-color: rgba(0, 0, 0, 0.50);
+            margin: 14px auto;
+
+            video, img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    .offscreen-media {
+        width: 1080px;
+        height: 1080px;
+        position: fixed;
+        top: -9999px;
+        left: -9999px;
+        z-index: 0;
+        display: none;
+
+        #webcam-video-offscreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            display: none;
+        }
+
+        #webcam-canvas-offscreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+    }
+}

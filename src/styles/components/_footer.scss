@@ -1,0 +1,29 @@
+.footer {
+    width: 100%;
+    margin-bottom: 100px;
+
+    &-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 32px;
+        margin-bottom: 16px;
+
+        a {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            color: $white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: $white;
+        text-align: center;
+    }
+}

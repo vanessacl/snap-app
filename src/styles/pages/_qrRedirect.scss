@@ -1,0 +1,31 @@
+.qr-redirect {
+    .center-content {
+        max-width: 395px;
+
+        .header {
+            margin: 60px 0 100px;
+
+            .logo-container {
+                .logo {
+                    width: 206px;
+                    height: 65px;
+                }
+            }
+        }
+
+        h1 {
+            font-weight: 400;
+            font-size: 40px;
+            line-height: 48px;
+            text-align: center;
+            color: $white;
+            margin-bottom: 64px;
+        }
+
+        .qr-code {
+            width: 240px;
+            height: 240px;
+            image-rendering: auto;
+        }
+    }
+}
