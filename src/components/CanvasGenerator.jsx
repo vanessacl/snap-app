@@ -19,7 +19,7 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
   ]
 
   //footer background
-  const footerOverlayUrl = '/assets/overlay-footer.jpg'
+  const footerOverlayUrl = '/assets/overlay-footer.png'
   const getImageUrl = (id) => {
     const background = backgrounds.find((bg) => bg.id === id)
     return background ? background.imageUrl : null
