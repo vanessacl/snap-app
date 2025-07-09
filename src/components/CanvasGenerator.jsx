@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react'
-//import { removeBackground} from "@imgly/background-removal";
 import {
   ImageSegmenter,
   ImageSegmenterResult,
@@ -7,32 +6,28 @@ import {
   MPMask,
 } from '@mediapipe/tasks-vision'
 import appStore from '../store/appStore'
-//import { isIOs } from '../utils/iosCheck';
 
 const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
   const [processedImage, setProcessedImage] = useState(null)
-
-  //const bUseMediaPipe = isIOs() ? true : false;
   const bUseMediaPipe = true
 
-  //#region background and footer image variables
+  //background image
   const backgrounds = [
     { id: 1, imageUrl: '/assets/BG1_City.png' },
     { id: 2, imageUrl: '/assets/BG2_University.png' },
     { id: 3, imageUrl: '/assets/BG3_CityWindow.png' },
   ]
 
-  const footerOverlayUrl = '/assets/overlay-footer-x.png'
-
+  //footer background
+  const footerOverlayUrl = '/assets/overlay-footer.jpg'
   const getImageUrl = (id) => {
     const background = backgrounds.find((bg) => bg.id === id)
     return background ? background.imageUrl : null
   }
-  //#endregion
 
-  //#region bg removal variables
+  //bg removal variables
   // bg removal states
-  const [bgRemovedSelfieImage, setBgRemovedSelfieImage] = useState(null) // this used to be called bgProcessedImage
+  const [bgRemovedSelfieImage, setBgRemovedSelfieImage] = useState(null)
   const [bgMaskVals, setBgMaskVals] = useState(null)
   const [selfieMaskReady, setSelfieMaskReady] = useState(false)
 
@@ -47,9 +42,8 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
 
   /** @type {Array<string>} */
   let labels
-  //#endregion
 
-  // #region final selfie creation variables
+  // final selfie creation variables
   // final selfie states
   const [imagesReady, setImagesReady] = useState(false)
   const [colorBalImage, setColorBalImage] = useState()
@@ -58,7 +52,6 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
 
   const selfieIdx = 1
   const footerIdx = 2
-  //#endregion
 
   // #region bg removal methods
   /**
@@ -69,12 +62,10 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
       'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm'
     )
 
-    //console.log("In create segmenter code");
     imageSegmenter = await ImageSegmenter.createFromOptions(audio, {
       baseOptions: {
         modelAssetPath:
           'https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_multiclass_256x256/float32/latest/selfie_multiclass_256x256.tflite',
-        //"https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite",
         delegate: 'CPU',
       },
       runningMode: runningMode,
@@ -83,7 +74,6 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
     })
     labels = imageSegmenter.getLabels()
     if (imageSegmenter) {
-      //console.log("Ok we have a segmenter Here " + labels)
       imageSegmenter.segment(imageref, FinishImageSegmentBGRemoval)
     }
   }
@@ -96,12 +86,10 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
     const mask = result.categoryMask.getAsUint8Array()
 
     setBgMaskVals(mask)
-    //setBgMaskConfidence(result?.confidenceMasks);
     setSelfieMaskReady(true)
   }
-  //#endregion
 
-  // #region final selfie methods
+  //final selfie methods
   const BlurAlphaChannel = (imgData) => {
     const width = imgData.width
     const height = imgData.height
@@ -279,22 +267,18 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
 
       // call function when the image is loaded
       userCaptureImg.onload = imageloaded
-      // canvas.width = 1080;
-      // canvas.height = 1080;
       context.clearRect(0, 0, canvas.width, canvas.height)
     }
   }
 
   const PositionAndDrawSelfie = (context) => {
     if (colorBalImage) {
-      //console.log("Color Balance Image Width = " + colorBalImage.width + " | Color Balance Image Height = " + colorBalImage.height);
       const sizeMultiplier = 0.75
       let selfieW = colorBalImage.width * sizeMultiplier
       let selfieH = colorBalImage.height * sizeMultiplier
 
       let topPos = canvas.height - selfieH
       let leftPos = (canvas.width - selfieW) / 2
-      //console.log("Canvas height is " + canvas.height);
 
       context.drawImage(colorBalImage, leftPos, topPos, selfieW, selfieH)
     }
@@ -306,23 +290,20 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
         loadedImages[footerIdx].width / loadedImages[footerIdx].height
       let overlayWidth = loadedImages[footerIdx].width
       let overlayHeight = loadedImages[footerIdx].height
-
-      //let topPos = canvas.height - loadedImages[footerIdx].height;
       let topPos = canvas.height - canvas.height / aspectRatio // testing
       let leftPos = 0
-      //context.drawImage(loadedImages[footerIdx], leftPos, topPos, overlayWidth, overlayHeight);
+
       context.drawImage(
         loadedImages[footerIdx],
         leftPos,
         topPos,
         canvas.width,
         canvas.height / aspectRatio
-      ) // I'm testing this until output is 1080 x 1080
+      ) // testing this until output is 1080 x 1080
     }
   }
-  //#endregion
 
-  //#region useEffects bg removal of user's selfie
+  //useEffects bg removal of user's selfie
   useEffect(() => {
     if (userCapture && !removalStartedRef.current) {
       //console.log("We have a userImage here");
@@ -343,26 +324,6 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
         // call function when the image is loaded
         userCaptureImg.onload = imageloaded
       }
-      // else // not iOS and we'll use the imgly background remover
-      // {
-      //     removalStartedRef.current = true;
-
-      //     let finalURL;
-      //     removeBackground(userCapture)
-      //     .then((blob) => {
-      //         //result is a blob encoded as PNG.
-      //         //It can be converted to an URL to be used as HTMLImage.src
-      //         finalURL = URL.createObjectURL(blob);
-      //         //console.log("Should run image processing on selfie");
-
-      //         setBgRemovedSelfieImage(finalURL);
-      //         setSelfieMaskReady(true);
-      //     })
-      //     .catch(error=> {
-      //         console.log('error during background removal message: ', error);
-      //         removalStartedRef.current = false;
-      //     });
-      // }
     }
   }, [userCapture])
 
@@ -405,9 +366,8 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
       })
     }
   }, [bgRemovedSelfieImage, selfieMaskReady])
-  //#endregion
 
-  //#region useEffects create final selfie
+  //create final selfie
   // color correct the selfie and remove background if using media pipe
   useEffect(() => {
     if (imagesReady) {
@@ -423,7 +383,7 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
     }
   }, [imagesReady])
 
-  // create final selfie image with user, selected background, and footer image
+  //create final selfie image with user, selected background, and footer image
   useEffect(() => {
     if (imagesReady && finalSelfieReady) {
       if (canvas) {
@@ -451,8 +411,6 @@ const CanvasGenerator = ({ userCapture, canvas, onProcessingComplete }) => {
       }
     }
   }, [imagesReady, finalSelfieReady])
-  //#endregion
-
   return <div></div>
 }
 

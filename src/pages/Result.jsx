@@ -46,7 +46,7 @@ const Result = () => {
         <p>*iPhone users, check your Files app for your downloaded photo.</p>
         <div className='divider'></div>
         <img
-          src={getImageURL('wicked.png')}
+          src={getImageURL('snap.png')}
           alt='Wicked'
           className='primary-img'
         />

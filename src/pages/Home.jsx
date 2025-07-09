@@ -15,7 +15,7 @@ const Home = () => {
       <div className='center-content'>
         <Header showBackButton={false} />
         <img
-          src={getImageURL('wicked.png')}
+          src={getImageURL('snap.png')}
           alt='Wicked'
           className='primary-img'
         />
