@@ -20,7 +20,8 @@ const Home = () => {
           className='primary-img'
         />
         <h1>
-          Capture the magic of Oz and see yourself in the world of Wicked.
+          Capture the enchantment of the fantasy world and see yourself in the
+          realm of Snap.
         </h1>
         <div className='btn-container'>
           <Link to='/how-it-works'>
