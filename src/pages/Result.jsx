@@ -18,7 +18,7 @@ const Result = () => {
   const handleDownload = () => {
     const link = document.createElement('a')
     link.href = appStore.processedImage
-    link.download = 'wicked_selfie.jpg'
+    link.download = 'selfie.jpg'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -34,7 +34,7 @@ const Result = () => {
       <div className='center-content'>
         <Header showBackButton={false} />
         <div className='photo-container'>
-          <img src={appStore.processedImage} alt='Wicked Selfie' />
+          <img src={appStore.processedImage} alt='Snap Selfie' />
         </div>
         <h1 className='page-heading '>Your photo is ready!</h1>
         <div className='btn-container'>
@@ -45,11 +45,7 @@ const Result = () => {
         </div>
         <p>*iPhone users, check your Files app for your downloaded photo.</p>
         <div className='divider'></div>
-        <img
-          src={getImageURL('snap.png')}
-          alt='Wicked'
-          className='primary-img'
-        />
+        <img src={getImageURL('snap.png')} alt='Snap' className='primary-img' />
         <h2>Thank you for checking this app!</h2>
         <div className='divider'></div>
         <Footer />
