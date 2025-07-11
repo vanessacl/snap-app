@@ -1,7 +1,7 @@
 # Selfie Snap App
 
 <p align="center">
-  <img src="assets/images/Screenshot.png" width= "450">
+  <img src="src/assets/images/Screenshot.png" width= "450">
 </p>
 
 ## Overview
@@ -42,27 +42,27 @@ Try the live app at [here](https://selfie-snap-react-app.netlify.app/).
 
 #### 1. Clone the repository:
 
-- git clone https://github.com/vanessacl/snap-app.git
+git clone https://github.com/vanessacl/snap-app.git
 
 #### 2. Navigate to the project directory:
 
-- cd snap-app
+cd snap-app
 
 #### Install dependencies:
 
-- npm install
+npm install
 
 #### 3. Run the development server::
 
-- npm run dev
+npm run dev
 
 #### 4. Serve the application:
 
-- Use a local server (e.g., VS Code Live Server) or open index.html in a browser.
+Use a local server (e.g., VS Code Live Server) or open index.html in a browser.
 
 #### 5. Open the application:
 
-- Open http://localhost:5173 in your browser (or the port specified by Vite).
+Open http://localhost:5173 in your browser (or the port specified by Vite).
 
 ## Deployment
 
